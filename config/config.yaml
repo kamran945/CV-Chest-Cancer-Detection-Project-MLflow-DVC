@@ -18,5 +18,5 @@ training:
 
 evaluation:
   path_of_model: artifacts/training/model.pth
-  training_data: artifacts/data_ingestion/kidney-ct-scan-image
-  mlflow_uri: https://dagshub.com/username/Lung-Cancer-Classification-MLflow-DVC.mlflow
+  val_data: artifacts/data_ingestion/data/chest_ct_scan_images_dataset_modified
+  mlflow_uri: https://dagshub.com/kamran945/CV-Chest-Cancer-Detection-Project-MLflow-DVC.mlflow
