@@ -28,8 +28,8 @@ class TrainingConfig:
     root_dir: Path
     trained_model_path: Path
     updated_base_model_path: Path
-    training_data: Path
-    val_data: Path
+    training_data: str
+    val_data: str
     params_epochs: int
     params_batch_size: int
     params_augmentation: bool

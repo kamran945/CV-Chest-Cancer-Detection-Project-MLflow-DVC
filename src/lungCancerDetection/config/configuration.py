@@ -1,9 +1,9 @@
 from pathlib import Path
 import os
 
-from src.lungCancerDetection.constants import *
-from src.lungCancerDetection.utils.common import read_yaml_file, create_directories
-from src.lungCancerDetection.entity import (
+from lungCancerDetection.constants import *
+from lungCancerDetection.utils.common import read_yaml_file, create_directories
+from lungCancerDetection.entity import (
     DataIngestionConfig,
     PrepareBaseModelConfig,
     TrainingConfig,
@@ -72,8 +72,8 @@ class ConfigurationManager:
 
         params = self.params
 
-        training_data = Path(self.config.data_ingestion.unzip_dir_full) / "train"
-        val_data = Path(self.config.data_ingestion.unzip_dir_full) / "valid"
+        training_data = str(Path(self.config.data_ingestion.unzip_dir_full) / "train")
+        val_data = str(Path(self.config.data_ingestion.unzip_dir_full) / "valid")
 
         create_directories([training.root_dir])
 

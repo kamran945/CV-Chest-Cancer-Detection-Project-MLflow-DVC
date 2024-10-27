@@ -7,7 +7,7 @@ from box import ConfigBox
 from box.exceptions import BoxValueError
 import yaml
 
-from src.lungCancerDetection import logger
+from lungCancerDetection import logger
 
 
 @ensure_annotations
@@ -70,7 +70,7 @@ def get_directory_size(dir_path: str) -> float:
     return total_size / (1024 * 1024)
 
 
-@ensure_annotations
+# @ensure_annotations
 def save_json(filepath: Path, data: dict) -> None:
     """
     Save data as a JSON file.
@@ -83,7 +83,7 @@ def save_json(filepath: Path, data: dict) -> None:
     try:
         with open(filepath, "w") as file:
             json.dump(data, file, indent=4)
-            logger.info(f"JSON file {filepath} saved successfully!")
+        logger.info(f"JSON file {filepath} saved successfully!")
     except Exception as e:
         raise Exception(f"An error occurred while saving JSON file: {str(e)}")
 

@@ -10,7 +10,7 @@ import torch.nn as nn
 import torch.optim as optim
 from torchvision import models
 
-from src.lungCancerDetection.entity import PrepareBaseModelConfig
+from lungCancerDetection.entity import PrepareBaseModelConfig
 
 
 class PrepareBaseModel:
@@ -22,6 +22,10 @@ class PrepareBaseModel:
         # Load the pretrained MobileNetV2 model
         self.model = models.mobilenet_v2(pretrained=True)
 
+        # Freeze the base layers
+        for param in self.model.parameters():
+            param.requires_grad = False
+
         # Modify the classifier for binary classification
         n_features = self.model.classifier[
             1
@@ -32,10 +36,6 @@ class PrepareBaseModel:
             nn.Sigmoid(),  # Sigmoid activation for binary classification
         )
 
-        # Freeze the base layers
-        for param in self.model.parameters():
-            param.requires_grad = False
-
         checkpoint = {"model": self.model}
         self.save_model_checkpoint(
             path=self.config.base_model_path, checkpoint=checkpoint
@@ -45,10 +45,13 @@ class PrepareBaseModel:
         self, model, classes, freeze_all, freeze_till, pre_trained_lr, clf_lr
     ):
         if freeze_all:
-            for param in model.parameters():
-                param.requires_grad = False
+            # for param in model.parameters():
+            #     param.requires_grad = False
 
-            # Define optimizer with different learning rates for different parts of the model
+            # # Unfreeze the last classifier layer parameters
+            # for param in model.classifier.parameters():
+            #     param.requires_grad = True
+
             self.optimizer = optim.Adam(
                 [
                     {
@@ -59,6 +62,23 @@ class PrepareBaseModel:
             )
         elif (freeze_till is not None) and (freeze_till > 0):
             for name, param in model.features[-freeze_till:].named_parameters():
+                param.requires_grad = True
+
+            # Define optimizer with different learning rates for different parts of the model
+            self.optimizer = optim.Adam(
+                [
+                    {
+                        "params": model.features.parameters(),
+                        "lr": pre_trained_lr,
+                    },  # Pretrained layers
+                    {
+                        "params": model.classifier.parameters(),
+                        "lr": clf_lr,
+                    },  # Classifier (fine-tuned)
+                ]
+            )
+        else:
+            for name, param in model.features.named_parameters():
                 param.requires_grad = True
 
             # Define optimizer with different learning rates for different parts of the model

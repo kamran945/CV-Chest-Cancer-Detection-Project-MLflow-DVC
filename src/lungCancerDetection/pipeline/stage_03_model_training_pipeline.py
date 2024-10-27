@@ -1,6 +1,6 @@
-from src.lungCancerDetection.config.configuration import ConfigurationManager
-from src.lungCancerDetection.components.model_training import Training
-from src.lungCancerDetection import logger
+from lungCancerDetection.config.configuration import ConfigurationManager
+from lungCancerDetection.components.model_training import Training
+from lungCancerDetection import logger
 
 
 STAGE_NAME = "Training"
@@ -16,7 +16,7 @@ class ModelTrainingPipeline:
         training = Training(config=training_config)
         training.get_base_model()
         training.train_val_data_generators()
-        training.train()
+        training.train_model()
 
 
 if __name__ == "__main__":

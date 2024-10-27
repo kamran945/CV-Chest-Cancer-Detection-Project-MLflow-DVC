@@ -3,9 +3,9 @@ import os
 import zipfile
 import gdown
 
-from src.lungCancerDetection.entity import DataIngestionConfig
-from src.lungCancerDetection.utils.common import get_directory_size
-from src.lungCancerDetection import logger
+from lungCancerDetection.entity import DataIngestionConfig
+from lungCancerDetection.utils.common import get_directory_size
+from lungCancerDetection import logger
 
 
 class DataIngestion:

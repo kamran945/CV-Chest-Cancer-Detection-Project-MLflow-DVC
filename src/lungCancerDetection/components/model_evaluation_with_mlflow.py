@@ -9,9 +9,9 @@ from torchvision import datasets, transforms
 import mlflow
 import mlflow.pytorch
 
-from src.lungCancerDetection.entity import EvaluationConfig
-from src.lungCancerDetection.utils.common import (
-    read_yaml,
+from lungCancerDetection.entity import EvaluationConfig
+from lungCancerDetection.utils.common import (
+    read_yaml_file,
     create_directories,
     save_json,
 )
@@ -23,14 +23,19 @@ class Evaluation:
 
     def _valid_generator(self):
 
-        val_dataset = datasets.ImageFolder(root=self.config.val_data)
+        val_transform = transforms.Compose(
+            [transforms.Resize((224, 224)), transforms.ToTensor()]
+        )
+        val_dataset = datasets.ImageFolder(
+            root=self.config.val_data, transform=val_transform
+        )
 
         # Create data loaders
         self.val_loader = DataLoader(
             val_dataset,
             batch_size=self.config.params_batch_size,
             shuffle=False,
-            NUM_WORKERS=self.config.params_num_workers,
+            # NUM_WORKERS=self.config.params_num_workers,
         )
 
     @staticmethod
@@ -80,11 +85,15 @@ class Evaluation:
             f"Validation Loss: {self.val_loss:.4f}, Validation Accuracy: {self.val_acc:.4f}"
         )
 
-        self.save_score()
+        # self.save_score()
 
     def save_score(self):
-        scores = {"loss": self.val_loss, "accuracy": self.val_acc}
-        save_json(path=Path("scores.json"), data=scores)
+        # scores = {"loss": str(self.val_loss), "accuracy": str(self.val_acc)}
+
+        save_json(
+            filepath=Path("scores.json"),
+            data={"loss": str(self.val_loss), "accuracy": str(self.val_acc)},
+        )
 
     def log_into_mlflow(self):
         mlflow.set_registry_uri(self.config.mlflow_uri)
