@@ -1,6 +1,6 @@
-from lungCancerDetection.config.configuration import ConfigurationManager
-from lungCancerDetection.components.data_ingestion import DataIngestion
-from lungCancerDetection import logger
+from src.lungCancerDetection.config.configuration import ConfigurationManager
+from src.lungCancerDetection.components.data_ingestion import DataIngestion
+from src.lungCancerDetection import logger
 
 
 STAGE_NAME = "DataIngestion Stage"

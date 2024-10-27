@@ -1,6 +1,6 @@
-from lungCancerDetection.config.configuration import ConfigurationManager
-from lungCancerDetection.components.model_evaluation_with_mlflow import Evaluation
-from lungCancerDetection import logger
+from src.lungCancerDetection.config.configuration import ConfigurationManager
+from src.lungCancerDetection.components.model_evaluation_with_mlflow import Evaluation
+from src.lungCancerDetection import logger
 
 
 STAGE_NAME = "Evaluation stage"

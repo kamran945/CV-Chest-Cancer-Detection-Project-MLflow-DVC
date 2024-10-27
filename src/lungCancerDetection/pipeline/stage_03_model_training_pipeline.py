@@ -1,6 +1,6 @@
-from lungCancerDetection.config.configuration import ConfigurationManager
-from lungCancerDetection.components.model_training import Training
-from lungCancerDetection import logger
+from src.lungCancerDetection.config.configuration import ConfigurationManager
+from src.lungCancerDetection.components.model_training import Training
+from src.lungCancerDetection import logger
 
 
 STAGE_NAME = "Training"

@@ -8,7 +8,7 @@ import torch
 from torch.utils.data import DataLoader
 from torchvision import datasets, transforms
 
-from lungCancerDetection.entity import TrainingConfig
+from src.lungCancerDetection.entity import TrainingConfig
 
 
 class Training:

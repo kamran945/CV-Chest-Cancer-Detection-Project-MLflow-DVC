@@ -10,7 +10,7 @@ import torch.nn as nn
 import torch.optim as optim
 from torchvision import models
 
-from lungCancerDetection.entity import PrepareBaseModelConfig
+from src.lungCancerDetection.entity import PrepareBaseModelConfig
 
 
 class PrepareBaseModel:

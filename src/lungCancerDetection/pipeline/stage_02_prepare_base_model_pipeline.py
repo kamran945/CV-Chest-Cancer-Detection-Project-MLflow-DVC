@@ -1,6 +1,6 @@
-from lungCancerDetection.config.configuration import ConfigurationManager
-from lungCancerDetection.components.prepare_base_model import PrepareBaseModel
-from lungCancerDetection import logger
+from src.lungCancerDetection.config.configuration import ConfigurationManager
+from src.lungCancerDetection.components.prepare_base_model import PrepareBaseModel
+from src.lungCancerDetection import logger
 
 
 STAGE_NAME = "Prepare base model"

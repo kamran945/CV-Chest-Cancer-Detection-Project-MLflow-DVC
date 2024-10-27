@@ -1,9 +1,9 @@
 from pathlib import Path
 import os
 
-from lungCancerDetection.constants import *
-from lungCancerDetection.utils.common import read_yaml_file, create_directories
-from lungCancerDetection.entity import (
+from src.lungCancerDetection.constants import *
+from src.lungCancerDetection.utils.common import read_yaml_file, create_directories
+from src.lungCancerDetection.entity import (
     DataIngestionConfig,
     PrepareBaseModelConfig,
     TrainingConfig,

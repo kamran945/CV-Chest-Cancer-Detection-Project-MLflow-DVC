@@ -7,7 +7,7 @@ from box import ConfigBox
 from box.exceptions import BoxValueError
 import yaml
 
-from lungCancerDetection import logger
+from src.lungCancerDetection import logger
 
 
 @ensure_annotations

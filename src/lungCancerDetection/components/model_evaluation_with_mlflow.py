@@ -9,8 +9,8 @@ from torchvision import datasets, transforms
 import mlflow
 import mlflow.pytorch
 
-from lungCancerDetection.entity import EvaluationConfig
-from lungCancerDetection.utils.common import (
+from src.lungCancerDetection.entity import EvaluationConfig
+from src.lungCancerDetection.utils.common import (
     read_yaml_file,
     create_directories,
     save_json,
